@@ -8,7 +8,8 @@ var OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{
 var height = $(window).height();
 console.log(`the height of the pc is: ` + height);
 
-var street = {"type":"FeatureCollection", "features": [
+// geojson data is now assigned to a variable street
+var streetLight = {"type":"FeatureCollection", "features": [
     {"type":"Feature","geometry":{"type":"Point","coordinates":[83.97833571758883,28.252707666241346]},"properties":{"ele":969.947449,"time":"2019-05-13T00:00:00.000Z","Name":"SL1","Power_Watt":30,"pole_hgt":8}},
     {"type":"Feature","geometry":{"type":"Point","coordinates":[83.97827769191508,28.252452157174343]},"properties":{"ele":969.808594,"time":"2019-05-13T00:00:00.000Z","Name":"SL2","Power_Watt":30,"pole_hgt":8}},
     {"type":"Feature","geometry":{"type":"Point","coordinates":[83.9781629749449,28.252283018791324]},"properties":{"ele":968.762085,"time":"2019-05-13T00:00:00.000Z","Name":"SL3","Power_Watt":30,"pole_hgt":8}},
@@ -58,6 +59,7 @@ var street = {"type":"FeatureCollection", "features": [
     {"type":"Feature","geometry":{"type":"Point","coordinates":[83.97675941291193,28.252381636428613]},"properties":{"ele":960.432324,"time":"2019-05-13T00:00:00.000Z","Name":"SL47","Power_Watt":30,"pole_hgt":8}}
 	]};
 	
+// style for street light marker
 var s_light_style = {
     radius: 8,
     fillColor: "#ff7800",
@@ -67,7 +69,8 @@ var s_light_style = {
     fillOpacity: 0.8
 };
 
-L.geoJSON(street, {
+// https://leafletjs.com/reference.html#geojson
+L.geoJSON(streetLight, {
     onEachFeature : function(feature, layer){
         var popupContent =  '<h4 class = "text-primary">Street Light</h4>' +
                             '<div class="container"><table class="table table-striped">' +
@@ -81,5 +84,8 @@ L.geoJSON(street, {
 	},
     pointToLayer: function (feature, latlng) {
         return L.circleMarker(latlng, s_light_style);
+        // return L.circleMarker(latlng);
     }
 }).addTo(map);
+// you can alternatively add data later with addData method
+// Options are used during creation of objects while methods are used after objects are created. So methods can be used multiple times but options are used only once during creation. If some features are needed at start then keep it in options otherwise use methods later.
