@@ -107,10 +107,12 @@
 
       // console.log(csvLayer);
 
-      // zoom to kml layer
-      // gpxLayer.on("ready", function () {
-      //   map.fitBounds(gpxLayer.getBounds());
-      // });
+      // zoom to gpx layer
+      gpxLayer.on("ready", function () {
+        map.fitBounds(gpxLayer.getBounds()); // this is equivalent to "Zoom to layer" in GIS apps
+      });
+      // map.fitBounds(gpxLayer.getBounds()); // this will not work because layer is not loaded yet
+      // Asynchronous loading is a very confusing topic for beginners. So, always use "on ready" event to make sure layer is loaded before performing any action on it.
     </script>
   </body>
 </html>
