@@ -98,8 +98,8 @@
     });
     // googleSat.addTo(map)
 
-    var wms = L.tileLayer.wms("http://localhost:8080/geoserver/wms", {
-        layers: 'geoapp:admin',
+    var wms = L.tileLayer.wms("https://nationalgeoportal.gov.np/geoserver/ows", {
+        layers: 'GIID:App_districts_old',
         format: 'image/png',
         transparent: true,
         attribution: "wms test"

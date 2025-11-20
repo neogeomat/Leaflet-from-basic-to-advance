@@ -39,7 +39,7 @@
 <script src="lib/L.Geoserver.js"></script>
 
 <script>
-  var map = L.map("map").setView([15.6261, -61.44361], 13);
+  var map = L.map("map").setView([27.6261, 85.44361], 7);
 
   var osm = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     maxZoom: 19,
@@ -50,16 +50,16 @@
   osm.addTo(map);
 
   // wms request
-  var wmsLayer = L.Geoserver.wms("http://localhost:8080/geoserver/wms", {
-    layers: "topp:BU_2020_A0_S0",
+  var wmsLayer = L.Geoserver.wms("https://nationalgeoportal.gov.np/geoserver/wms", {
+    layers: "GIID:App_districts_old",
     transparent: true,
-    CQL_FILTER: "TYPE=='RC_2'",
+    // CQL_FILTER: "TYPE=='RC_2'",
     attribution: "My wms map of building",
   });
   wmsLayer.addTo(map);
 
-  var wfsLayer = L.Geoserver.wfs("http://localhost:8080/geoserver/wfs", {
-    layers: "topp:BU_2020_A0_S0",
+  var wfsLayer = L.Geoserver.wfs("https://nationalgeoportal.gov.np/geoserver/wfs", {
+    layers: "GIID:App_districts_old",
     style: {
       color: "black",
       fillOpacity: "0.3",
@@ -73,10 +73,10 @@
     },
     // CQL_FILTER: "district='Syangja'",
   });
-  // wfsLayer.addTo(map);
+  wfsLayer.addTo(map);
 
-  var layerLegend = L.Geoserver.legend("http://localhost:8080/geoserver/wms", {
-    layers: "topp:BU_2020_A0_S0",
+  var layerLegend = L.Geoserver.legend("https://nationalgeoportal.gov.np/geoserver/wfs", {
+    layers: "GIID:App_districts_old",
     // style: `stylefile`,
   });
 
